@@ -1,49 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tetris Cube - Flash Games</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    <style>
+        .game-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 1rem auto;
+            padding: 1rem;
+        }
+        
+        .iframe-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .tetris-iframe {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            aspect-ratio: 800/600;
+            border: 0;
+            display: block;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .game-container {
+                padding: 0.8rem;
+            }
+            
+            .game-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .game-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .game-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .iframe-wrapper {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
     <div class="bg-graphics">
-      <div class="glow-ball"></div>
-      <div class="glow-ball glow-ball2"></div>
+        <div class="glow-ball"></div>
+        <div class="glow-ball glow-ball2"></div>
     </div>
     <div class="grid-overlay"></div>
 
     <div class="game-container">
-      <div class="game-header">
-        <a href="index.html" class="back-btn">← BACK</a>
-        <h1>TETRIS CUBE</h1>
-        <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
-      </div>
+        <div class="game-header">
+            <a href="index.html" class="back-btn">← BACK</a>
+            <h1>TETRIS CUBE</h1>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
+        </div>
 
-      <div class="iframe-wrapper">
-        <iframe
-          src="https://cdn.bubbleshooter.net/games/tetris-cube/"
-          frameborder="0"
-          scrolling="no"
-          class="game-iframe tetris-iframe"
-          id="game-iframe"
-          allowfullscreen
-        >
-        </iframe>
-      </div>
+        <div class="iframe-wrapper">
+            <iframe 
+                src="https://cdn.bubbleshooter.net/games/tetris-cube/" 
+                frameborder="0" 
+                scrolling="no" 
+                class="game-iframe tetris-iframe"
+                id="game-iframe"
+                allowfullscreen>
+            </iframe>
+        </div>
     </div>
 
     <script>
-      function toggleFullscreen() {
-        const iframe = document.querySelector(".game-iframe");
-        if (iframe.requestFullscreen) {
-          iframe.requestFullscreen();
-        } else if (iframe.webkitRequestFullscreen) {
-          iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) {
-          iframe.msRequestFullscreen();
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            
+            if (!document.fullscreenElement) {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) {
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) {
+                    iframe.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
         }
-      }
     </script>
-  </body>
+</body>
 </html>
