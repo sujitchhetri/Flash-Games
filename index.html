@@ -1,44 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      header h1 {
-        text-align: center;
-        background-color: blue;
-        color: white;
-        padding: 20px;
-
-      }
-
-      .earn-to-die-link {
-        display: block;
-        text-align: center;
-        font-size: 24px;
-        margin-top: 20px;
-      }
-      @media screen and (max-width: 600px) {
-        .earn-to-die-link img {
-          width: 100px;
-          height: 100px;
-        }
-        
-        
-      }
-    </style>
+    <title>Classic Flash Games</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header id="header">
-      <h1>Flash Games</h1>
-    </header>
-    <div>
-      <a href="earn to die game.html" id="earntodie" class="earn-to-die-link"
-        ><img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOyaL_E3wYWPGp-49GXMraCjSqAxxjUwagIA&shoulders=0&width=120&height=120&crop=1"
-          alt=""
-      /></a>
+    <!-- background graphics -->
+    <div class="bg-graphics">
+      <div class="glow-ball"></div>
+      <div class="glow-ball glow-ball2"></div>
     </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Simple Header with FLASH GAMES at top -->
+    <header class="site-header">
+      <div class="header-container">
+        <div class="logo">
+          <h1>FLASH GAMES</h1>
+          <span class="tagline">retro · arcade</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="games-panel">
+        <div class="panel-header">
+          <h2>Featured Games</h2>
+          <div class="game-count">3 games</div>
+        </div>
+
+        <!-- game grid - fully responsive -->
+        <div class="game-grid">
+          <!-- Game 1 - Slope -->
+          <div class="game-card">
+            <a href="slope.html" class="card-link">
+              <div class="game-image">
+                <img
+                  src="https://geometrylitepc.io/data/image/game/slope.jpg"
+                  alt="slope"
+                />
+              </div>
+              <div class="game-title">SLOPE</div>
+            </a>
+          </div>
+
+          <!-- Game 2 - Wordle -->
+          <div class="game-card">
+            <a href="wordle.html" class="card-link">
+              <div class="game-image">
+                <img
+                  src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2022-01/wordle-inline1-AW-220105-1acb81.jpg"
+                  alt="wordle"
+                />
+              </div>
+              <div class="game-title">WORDLE</div>
+            </a>
+          </div>
+
+          <!-- Game 3 - Tetris Cube -->
+          <div class="game-card">
+            <a href="tetris-cube.html" class="card-link">
+              <div class="game-image">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-tHmLiVaBjg69sxQLE4gGI7oP8O_rnI1w3g&s"
+                  alt="tetris cube"
+                />
+              </div>
+              <div class="game-title">TETRIS CUBE</div>
+            </a>
+          </div>
+
+         
+
+          <!-- Template for new games (commented out) -->
+          <!-- 
+          <div class="game-card">
+            <a href="new-game.html" class="card-link">
+              <div class="game-image">
+                <img src="your-image.jpg" alt="new game" />
+              </div>
+              <div class="game-title">NEW GAME</div>
+            </a>
+          </div>
+          -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>© 2026 Flash Games Archive. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
