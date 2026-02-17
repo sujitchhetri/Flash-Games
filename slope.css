@@ -1,0 +1,49 @@
+iframe {
+  background: url("https://i.pinimg.com/originals/1c/8e/0b/1c8e0b9a7d2f5a3c9e4f1c8e5b6a7d.png")
+    repeat-x;
+  width: 960px;
+  height: 641px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 5.5rem;
+  left: 17rem;
+  
+}
+
+
+header {
+ text-align: center;
+ 
+}
+nav {
+
+  justify-content: center;
+  gap: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 2px;
+  color: blue; 
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: red;
+}
+  
+  
+  *{
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;  
+      
+    }
+  
+}
+
+.slope {
+  display: flex;
+  justify-content: left;
+  gap: 2px;
+ padding: auto;
+}
