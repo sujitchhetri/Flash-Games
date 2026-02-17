@@ -3,46 +3,301 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slope</title>
+    <title>Slope - Flash Games</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Base styles */
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .game-wrapper {
+        width: 100%;
+        max-width: 960px;
+        padding: 20px;
+      }
+
+      .game-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .game-header h1 {
+        color: #ffd700;
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      .back-btn {
+        color: white;
+        text-decoration: none;
+        padding: 8px 20px;
+        background: #1e2a3a;
+        border-radius: 30px;
+        border: 1px solid #ffd700;
+        transition: all 0.2s;
+      }
+
+      .back-btn:hover {
+        background: #2f4172;
+        transform: scale(1.05);
+      }
+
+      .iframe-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background: #000;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 3px solid #ffd700;
+      }
+
+      .game-iframe {
+        width: 100%;
+        max-width: 960px;
+        aspect-ratio: 960/641;
+        border: 0;
+        display: block;
+      }
+
+      /* Desktop styles (769px and above) */
+      @media screen and (min-width: 769px) {
+        .mobile-message {
+          display: none;
+        }
+        .desktop-content {
+          display: block;
+        }
+      }
+
+      /* Mobile styles (768px and below) */
+      @media screen and (max-width: 768px) {
+        .desktop-content {
+          display: none;
+        }
+
+        .mobile-message {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          background: rgba(18, 25, 40, 0.95);
+          border: 3px solid #ffd700;
+          border-radius: 2rem;
+          padding: 3rem 2rem;
+          margin: 1rem 0;
+          color: white;
+          min-height: 400px;
+        }
+
+        .mobile-message .emoji {
+          font-size: 5rem;
+          margin-bottom: 1rem;
+          animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .mobile-message h2 {
+          color: #ffd700;
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .mobile-message p {
+          color: #ccd9ff;
+          font-size: 1.2rem;
+          margin-bottom: 2rem;
+          line-height: 1.6;
+          max-width: 400px;
+        }
+
+        .mobile-message .suggestion-box {
+          background: #1e2a3a;
+          border: 2px solid #ffd700;
+          border-radius: 1.5rem;
+          padding: 2rem;
+          margin: 1rem 0;
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .mobile-message .suggestion-box h3 {
+          color: #ffd700;
+          font-size: 1.3rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .mobile-message .game-links {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .mobile-message .game-link {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem;
+          background: #2a3346;
+          border-radius: 1rem;
+          text-decoration: none;
+          color: white;
+          transition: all 0.2s;
+          border: 1px solid #ffd70040;
+        }
+
+        .mobile-message .game-link:hover {
+          background: #2f4172;
+          border-color: #ffd700;
+          transform: translateX(5px);
+        }
+
+        .mobile-message .game-link span {
+          font-size: 2rem;
+        }
+
+        .mobile-message .game-link .game-info {
+          flex: 1;
+          text-align: left;
+        }
+
+        .mobile-message .game-link .game-info h4 {
+          color: #ffd700;
+          margin-bottom: 0.2rem;
+        }
+
+        .mobile-message .game-link .game-info p {
+          font-size: 0.9rem;
+          margin: 0;
+          color: #a5b9e6;
+        }
+
+        .mobile-message .back-hint {
+          margin-top: 2rem;
+          font-size: 1rem;
+          color: #8899cc;
+        }
+
+        .mobile-message .back-hint a {
+          color: #ffd700;
+          text-decoration: none;
+          font-weight: bold;
+        }
+      }
+      /* Add desktop-only badge to Slope card */
+.game-card a[href="slope.html"] {
+    position: relative;
+}
+
+.game-card a[href="slope.html"]::after {
+    content: "🖥️ DESKTOP ONLY";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #ff4444;
+    color: white;
+    font-size: 0.6rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 768px) {
+    .game-card a[href="slope.html"] {
+        display: none;
+    }
+}
+    </style>
   </head>
   <body>
-    <div class="bg-graphics">
-      <div class="glow-ball"></div>
-      <div class="glow-ball glow-ball2"></div>
-    </div>
-    <div class="grid-overlay"></div>
-
-    <div class="game-container">
+    <div class="game-wrapper">
       <div class="game-header">
         <a href="index.html" class="back-btn">← BACK</a>
         <h1>SLOPE</h1>
-        <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
+        <div class="spacer" style="width: 80px"></div>
       </div>
 
-      <div class="iframe-wrapper">
-        <iframe
-          src="https://y8.com/embed/slope"
-          scrolling="no"
-          allowfullscreen
-          class="game-iframe slope-iframe"
-          id="game-iframe"
-        >
-        </iframe>
+      <!-- Desktop Content - Game shows here -->
+      <div class="desktop-content">
+        <div class="iframe-container">
+          <iframe
+            src="https://y8.com/embed/slope"
+            scrolling="no"
+            class="game-iframe"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Mobile Content - Friendly message with alternatives -->
+      <div class="mobile-message">
+        <div class="emoji">🖥️</div>
+        <h2>Desktop Only Game</h2>
+        <p>
+          Slope is optimized for desktop and won't play properly on mobile
+          devices.
+        </p>
+
+        <div class="suggestion-box">
+          <h3>📱 Try these mobile-friendly games:</h3>
+          <div class="game-links">
+            <a href="wordle.html" class="game-link">
+              <span>🎯</span>
+              <div class="game-info">
+                <h4>WORDLE</h4>
+                <p>Word puzzle - perfect for mobile</p>
+              </div>
+              <span>→</span>
+            </a>
+
+            <a href="tetris-cube.html" class="game-link">
+              <span>🧩</span>
+              <div class="game-info">
+                <h4>TETRIS CUBE</h4>
+                <p>Classic puzzle - works on mobile</p>
+              </div>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="back-hint">
+          👈 <a href="index.html">Back to game selection</a>
+        </div>
       </div>
     </div>
 
     <script>
-      function toggleFullscreen() {
-        const iframe = document.querySelector(".game-iframe");
-        if (iframe.requestFullscreen) {
-          iframe.requestFullscreen();
-        } else if (iframe.webkitRequestFullscreen) {
-          iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) {
-          iframe.msRequestFullscreen();
+      // Optional: Redirect if someone tries to access directly on mobile
+      (function () {
+        if (window.innerWidth <= 768) {
+          // Just show the message, no redirect
+          console.log("Mobile user viewing Slope page");
         }
-      }
+      })();
     </script>
   </body>
 </html>
