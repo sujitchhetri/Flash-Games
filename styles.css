@@ -704,3 +704,193 @@ body {
         min-height: 200px;
     }
 }
+
+/* Add this to your existing styles.css */
+
+/* City Sniper specific styles */
+.city-sniper-iframe {
+    max-width: 1000px;
+    aspect-ratio: 1000/600;
+}
+
+/* Update game count in panel header for 4 games */
+.game-count {
+    /* This class already exists, just make sure the count updates */
+}
+
+/* Responsive adjustments for City Sniper */
+@media screen and (max-width: 768px) {
+    .city-sniper-iframe {
+        min-height: 450px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .city-sniper-iframe {
+        min-height: 400px;
+    }
+}
+
+/* Fix for the embed script container */
+.iframe-wrapper div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iframe-wrapper iframe {
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+}
+
+/* Add these to your existing styles.css */
+
+/* Traffic Racer 2 specific styles */
+.traffic-racer-iframe {
+    max-width: 1000px;
+    aspect-ratio: 1000/600;
+}
+
+/* Update game grid for 5 items - adjust if needed */
+@media screen and (max-width: 768px) {
+    .game-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr); /* Force 2 columns on small phones */
+    }
+}
+
+/* Racing hint styling */
+.racing-hint {
+    background: rgba(255, 215, 0, 0.1);
+    border-left: 4px solid #ffd700;
+    padding: 0.8rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: #f0f0f0;
+    font-size: 0.95rem;
+    backdrop-filter: blur(5px);
+}
+
+.racing-hint span {
+    color: #ffd700;
+    font-weight: bold;
+    margin-right: 0.3rem;
+}
+
+/* Ensure iframe container works with embed script */
+.iframe-wrapper div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iframe-wrapper iframe {
+    max-width: 100%;
+    height: auto;
+    min-height: 450px;
+    border-radius: 0.5rem;
+}
+
+/* Add these to your existing styles.css */
+
+/* Classic Bubble Shooter specific styles */
+.bubble-shooter-iframe {
+    max-width: 1000px;
+    aspect-ratio: 1000/650;
+}
+
+/* Update game grid for 6 items */
+@media screen and (max-width: 768px) {
+    .game-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr); /* Keep 2 columns on phones */
+        gap: 0.8rem;
+    }
+    
+    .game-image {
+        width: min(80px, 18vw);
+        height: min(80px, 18vw);
+    }
+    
+    .game-title {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr); /* Still 2 columns on very small phones */
+    }
+    
+    .game-image {
+        width: min(70px, 16vw);
+        height: min(70px, 16vw);
+    }
+}
+
+/* Game tip styling (reused from bubble shooter) */
+.game-tip {
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 0.8rem 1.2rem;
+    margin: 1rem 0;
+    border-radius: 2rem;
+    color: #f0f0f0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    backdrop-filter: blur(5px);
+}
+
+.game-tip-icon {
+    font-size: 1.5rem;
+    background: #ffd700;
+    color: #0a0e17;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.game-tip-text span {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+/* Ensure iframe container works with embed script for all games */
+.iframe-wrapper div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iframe-wrapper iframe {
+    max-width: 100%;
+    height: auto;
+    min-height: 450px;
+    border-radius: 0.5rem;
+}

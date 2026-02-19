@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Classic Bubble Shooter - Flash Games</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .game-container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 1rem auto;
+            padding: 1rem;
+        }
+        
+        .iframe-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin: 1rem 0;
+            position: relative;
+            min-height: 500px;
+        }
+        
+        .bubble-shooter-iframe {
+            width: 100%;
+            max-width: 1000px;
+            height: 650px;
+            border: 0;
+            display: block;
+        }
+        
+        /* Mobile Fullscreen Prompt */
+        .mobile-fullscreen-prompt {
+            display: none;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #0a0e17;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .mobile-fullscreen-prompt p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mobile-fullscreen-prompt .fullscreen-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .mobile-fullscreen-prompt .fullscreen-icon {
+            font-size: 1.5rem;
+            background: #0a0e17;
+            color: #ffd700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+        }
+        
+        .mobile-fullscreen-btn {
+            background: #0a0e17;
+            color: #ffd700;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 0.8rem;
+            cursor: pointer;
+            border: 2px solid #fff;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-fullscreen-btn:hover {
+            transform: scale(1.05);
+            background: #1a1f2a;
+        }
+        
+        .mobile-fullscreen-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Puzzle game specific styles */
+        .game-tip {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid #ffd700;
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0;
+            border-radius: 2rem;
+            color: #fff;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .game-tip-icon {
+            font-size: 1.5rem;
+            background: #ffd700;
+            color: #0a0e17;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .game-tip-text {
+            flex: 1;
+        }
+        
+        .game-tip-text span {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .game-container {
+                padding: 0.8rem;
+            }
+            
+            .bubble-shooter-iframe {
+                height: 550px;
+            }
+            
+            .iframe-wrapper {
+                min-height: 550px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .game-container {
+                padding: 0.5rem;
+            }
+            
+            .game-header {
+                flex-wrap: wrap;
+            }
+            
+            .game-header h1 {
+                font-size: 1.3rem;
+                order: 1;
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+            
+            .back-btn {
+                order: 2;
+                flex: 1;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.5rem;
+                text-align: center;
+            }
+            
+            .fullscreen-btn {
+                order: 3;
+                flex: 1;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.5rem;
+            }
+            
+            .mobile-fullscreen-prompt {
+                display: block;
+            }
+            
+            .bubble-shooter-iframe {
+                height: 450px;
+            }
+            
+            .iframe-wrapper {
+                min-height: 450px;
+            }
+            
+            .game-tip {
+                padding: 0.6rem 1rem;
+            }
+            
+            .game-tip-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media screen and (max-width: 375px) {
+            .bubble-shooter-iframe {
+                height: 400px;
+            }
+            
+            .iframe-wrapper {
+                min-height: 400px;
+            }
+        }
+        
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .bubble-shooter-iframe {
+                height: 300px;
+            }
+            
+            .iframe-wrapper {
+                min-height: 300px;
+            }
+            
+            .game-tip {
+                display: none; /* Hide tip in landscape to save space */
+            }
+        }
+        
+        /* Fullscreen styles */
+        .bubble-shooter-iframe:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        .bubble-shooter-iframe:-webkit-full-screen {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        /* Bubble shooter specific styling */
+        .bubble-title {
+            background: linear-gradient(135deg, #ff6b6b, #4facfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-graphics">
+        <div class="glow-ball"></div>
+        <div class="glow-ball glow-ball2"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <div class="game-container">
+        <div class="game-header">
+            <a href="index.html" class="back-btn">← BACK</a>
+            <h1 class="bubble-title">CLASSIC BUBBLE SHOOTER</h1>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
+        </div>
+
+       <!-- Mobile Fullscreen Prompt -->
+<div class="mobile-fullscreen-prompt" id="mobileFullscreenPrompt">
+    <p>🧼 For the best puzzle experience:</p>
+    <div class="fullscreen-hint">
+        <span>Tap</span>
+        <span class="fullscreen-icon">⛶</span>
+        <span>for FULLSCREEN</span>
+    </div>
+    <button class="mobile-fullscreen-btn" onclick="toggleFullscreen()">
+        PLAY IN FULLSCREEN ⛶
+    </button>
+</div>
+
+        <!-- Game tip for bubble shooter -->
+        <div class="game-tip">
+            <div class="game-tip-icon">🎯</div>
+            <div class="game-tip-text">
+                <span>PRO TIP:</span> Aim for groups of 3+ same-colored bubbles to pop them!
+            </div>
+        </div>
+
+        <div class="iframe-wrapper">
+            <div>
+                <script src="https://cdn.htmlgames.com/embed.js?game=ClassicBubbleShooter&bgcolor=white"></script>
+            </div>
+        </div>
+        
+        <!-- Second tip for mobile users -->
+        <div class="game-tip" style="margin-top: 0.5rem;">
+            <div class="game-tip-icon">📱</div>
+            <div class="game-tip-text">
+                <span>TOUCH:</span> Tap and drag to aim, release to shoot bubbles
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFullscreen() {
+            const iframe = document.querySelector('.bubble-shooter-iframe');
+            const container = document.querySelector('.iframe-wrapper div');
+            
+            // Try to find the actual iframe (the embed script creates one)
+            const gameIframe = document.querySelector('iframe') || iframe;
+            
+            if (!document.fullscreenElement) {
+                if (gameIframe.requestFullscreen) {
+                    gameIframe.requestFullscreen();
+                } else if (gameIframe.webkitRequestFullscreen) {
+                    gameIframe.webkitRequestFullscreen();
+                } else if (gameIframe.msRequestFullscreen) {
+                    gameIframe.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Mobile optimization
+        function adjustForMobile() {
+            const prompt = document.getElementById('mobileFullscreenPrompt');
+            const isMobile = window.innerWidth <= 480;
+            
+            if (isMobile) {
+                prompt.style.display = 'block';
+                
+                // Adjust height based on viewport
+                const wrapper = document.querySelector('.iframe-wrapper');
+                const viewportHeight = window.innerHeight;
+                const headerHeight = document.querySelector('.game-header').offsetHeight;
+                const promptHeight = prompt.offsetHeight;
+                const tips = document.querySelectorAll('.game-tip');
+                let tipsHeight = 0;
+                tips.forEach(tip => {
+                    tipsHeight += tip.offsetHeight;
+                });
+                const availableHeight = viewportHeight - headerHeight - promptHeight - tipsHeight - 100;
+                
+                if (availableHeight > 350) {
+                    wrapper.style.minHeight = availableHeight + 'px';
+                }
+            } else {
+                prompt.style.display = 'none';
+            }
+        }
+
+        // Detect mobile device
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || 
+                   (navigator.userAgent.indexOf('IEMobile') !== -1) ||
+                   (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+        }
+
+        // Run on load and resize
+        window.addEventListener('load', adjustForMobile);
+        window.addEventListener('resize', adjustForMobile);
+        window.addEventListener('orientationchange', function() {
+            setTimeout(adjustForMobile, 100);
+        });
+
+        // Show prompt immediately if mobile
+        if (isMobileDevice()) {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('mobileFullscreenPrompt').style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
