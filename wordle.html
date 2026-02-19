@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>Wordle - Flash Games</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
@@ -22,6 +22,7 @@
             border-radius: 1rem;
             overflow: hidden;
             margin: 1rem 0;
+            position: relative;
         }
         
         .wordle-iframe {
@@ -33,9 +34,77 @@
             display: block;
         }
         
+        /* Mobile Fullscreen Prompt */
+        .mobile-fullscreen-prompt {
+            display: none;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #0a0e17;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .mobile-fullscreen-prompt p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mobile-fullscreen-prompt .fullscreen-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .mobile-fullscreen-prompt .fullscreen-icon {
+            font-size: 1.5rem;
+            background: #0a0e17;
+            color: #ffd700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+        }
+        
+        .mobile-fullscreen-btn {
+            background: #0a0e17;
+            color: #ffd700;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 0.8rem;
+            cursor: pointer;
+            border: 2px solid #fff;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-fullscreen-btn:hover {
+            transform: scale(1.05);
+            background: #1a1f2a;
+        }
+        
+        .mobile-fullscreen-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* IMPROVED MOBILE RESPONSIVENESS */
         @media screen and (max-width: 768px) {
             .game-container {
                 padding: 0.8rem;
+                margin: 0.5rem auto;
             }
             
             .game-header {
@@ -49,15 +118,159 @@
             .game-header h1 {
                 font-size: 1.5rem;
             }
+            
+            .iframe-wrapper {
+                min-height: 400px;
+            }
+            
+            .wordle-iframe {
+                aspect-ratio: unset;
+                height: 100%;
+                min-height: 400px;
+            }
         }
         
         @media screen and (max-width: 480px) {
+            .game-container {
+                padding: 0.5rem;
+            }
+            
+            .game-header {
+                flex-wrap: wrap;
+                position: relative;
+            }
+            
+            .game-header h1 {
+                font-size: 1.3rem;
+                order: 1;
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+            
+            .back-btn {
+                order: 2;
+                flex: 1;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.5rem;
+                text-align: center;
+            }
+            
+            .fullscreen-btn {
+                order: 3;
+                flex: 1;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.5rem;
+            }
+            
+            /* Show mobile fullscreen prompt on small screens */
+            .mobile-fullscreen-prompt {
+                display: block;
+            }
+            
+            .iframe-wrapper {
+                min-height: 350px;
+                border-radius: 0.8rem;
+            }
+            
+            .wordle-iframe {
+                min-height: 350px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        /* For very small phones (iPhone SE, etc) */
+        @media screen and (max-width: 375px) {
+            .iframe-wrapper {
+                min-height: 300px;
+            }
+            
+            .wordle-iframe {
+                min-height: 300px;
+            }
+            
+            .mobile-fullscreen-prompt p {
+                font-size: 1rem;
+            }
+            
+            .mobile-fullscreen-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Landscape mode optimization */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .game-container {
+                padding: 0.5rem;
+            }
+            
+            .game-header {
+                margin-bottom: 0.5rem;
+            }
+            
             .game-header h1 {
                 font-size: 1.2rem;
             }
             
             .iframe-wrapper {
-                min-height: 400px;
+                min-height: 250px;
+            }
+            
+            .wordle-iframe {
+                min-height: 250px;
+            }
+            
+            .mobile-fullscreen-prompt {
+                margin: 0.5rem 0;
+                padding: 0.5rem;
+            }
+            
+            .mobile-fullscreen-prompt p {
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .mobile-fullscreen-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+                margin-top: 0.3rem;
+            }
+        }
+        
+        /* Tablet optimization */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .iframe-wrapper {
+                min-height: 500px;
+            }
+            
+            .wordle-iframe {
+                min-height: 500px;
+            }
+        }
+        
+        /* Fullscreen mode adjustments */
+        .wordle-iframe:fullscreen {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        .wordle-iframe:-webkit-full-screen {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        /* Hide desktop fullscreen button on mobile if needed */
+        @media screen and (max-width: 480px) {
+            .fullscreen-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     </style>
@@ -76,6 +289,19 @@
             <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶</button>
         </div>
 
+        <!-- Mobile Fullscreen Prompt (visible only on mobile) -->
+        <div class="mobile-fullscreen-prompt" id="mobileFullscreenPrompt">
+            <p>📱 For the best experience on mobile:</p>
+            <div class="fullscreen-hint">
+                <span>Tap</span>
+                <span class="fullscreen-icon">⛶</span>
+                <span>for FULLSCREEN</span>
+            </div>
+            <button class="mobile-fullscreen-btn" onclick="toggleFullscreen()">
+                PLAY IN FULLSCREEN ⛶
+            </button>
+        </div>
+
         <div class="iframe-wrapper">
             <iframe 
                 src="https://cdn.bubbleshooter.net/games/wordle/" 
@@ -83,7 +309,8 @@
                 scrolling="no" 
                 class="game-iframe wordle-iframe"
                 id="game-iframe"
-                allowfullscreen>
+                allowfullscreen
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
             </iframe>
         </div>
     </div>
@@ -109,6 +336,54 @@
                     document.msExitFullscreen();
                 }
             }
+        }
+
+        // Additional mobile optimization: Show/hide prompt based on orientation
+        function checkMobileAndOrientation() {
+            const prompt = document.getElementById('mobileFullscreenPrompt');
+            const isMobile = window.innerWidth <= 480;
+            
+            if (isMobile) {
+                prompt.style.display = 'block';
+                
+                // Adjust iframe height based on viewport
+                const iframe = document.querySelector('.wordle-iframe');
+                const wrapper = document.querySelector('.iframe-wrapper');
+                const viewportHeight = window.innerHeight;
+                const headerHeight = document.querySelector('.game-header').offsetHeight;
+                const promptHeight = prompt.offsetHeight;
+                const availableHeight = viewportHeight - headerHeight - promptHeight - 100;
+                
+                if (availableHeight > 250) {
+                    wrapper.style.minHeight = availableHeight + 'px';
+                    iframe.style.minHeight = availableHeight + 'px';
+                }
+            } else {
+                prompt.style.display = 'none';
+            }
+        }
+
+        // Run on load and resize
+        window.addEventListener('load', checkMobileAndOrientation);
+        window.addEventListener('resize', checkMobileAndOrientation);
+        
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(checkMobileAndOrientation, 100);
+        });
+        
+        // Detect if device is mobile (for additional checks)
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || 
+                   (navigator.userAgent.indexOf('IEMobile') !== -1) ||
+                   (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+        }
+        
+        // Show prompt immediately if mobile device
+        if (isMobileDevice()) {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('mobileFullscreenPrompt').style.display = 'block';
+            });
         }
     </script>
 </body>
